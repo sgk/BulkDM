@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Send direct message{% endblock %}
+{% block content %}
+  <form method="POST">
+    <textarea cols="80" rows="3" name="message">{{ session['message'] }}</textarea>
+    <input type="submit" value="Send" />
+  </form>
+  <hr />
+  <p>
+    Remaining {{ dests|length }} destination(s).
+  </p>
+  <ul>
+    {% for dest in dests %}
+      <li>@{{ dest }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

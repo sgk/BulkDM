@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Build the destination list{% endblock %}
+{% block content %}
+  <p>
+    Build the destination list here, then
+    <a href="{{ url_for('message') }}">send direct message.</a>
+  </p>
+  <div>
+    <ul>
+      <li>
+	<form method="POST">
+	  <label>
+	    Add Twitter users (space separated usernames):
+	    <input type="text" name="dests_list" />
+	  </label>
+	  <input type="submit" name="dests_add" value="add" />
+	</form>
+      </li>
+      <li>
+	<form method="POST">
+	  <label>
+	    Load TweetVite event (URL or id):
+	    <input type="text" name="tweetvite_id" />
+	  </label>
+	  <label>
+	    <input type="checkbox" name="tweetvite_yes" value="on" checked />Yes
+	  </label>
+	  <label>
+	    <input type="checkbox" name="tweetvite_maybe" value="on" />Maybe
+	  </label>
+	  <label>
+	    <input type="checkbox" name="tweetvite_no" value="on" />No
+	  </label>
+	  <input type="submit" name="tweetvite_load" value="load" />
+	</form>
+      </li>
+      <li>
+	<form method="POST">
+	  <input type="submit" name="clear" value="Delete all" />
+	</form>
+      </li>
+    <ul>
+  </div>
+  <hr />
+  <div>
+    <p>
+      Total {{ dests|length }} destination(s).
+    </p>
+    <form method="POST">
+      {% if dests %}
+	<input type="submit" value="delete checked" />
+      {% endif %}
+      <p>
+	{% for dest in dests %}
+	  <label>
+	    <input type="checkbox" name="delete" value="{{ dest }}" />
+	    @{{ dest }}
+	  </label>
+	  <br />
+	{% endfor %}
+      </p>
+      {% if dests %}
+	<input type="submit" value="delete checked" />
+      {% endif %}
+    </form>
+  </div>
+{% endblock content %}

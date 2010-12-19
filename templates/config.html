@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Configuration{% endblock %}
+{% block content %}
+  You can save this configuration only once.
+  <form method="POST">
+    <label>
+      Consumer Key:
+      <input type="text" name="consumer_key" />
+    </label><br />
+    <label>
+      Consumer Secret:
+      <input type="text" name="consumer_secret" />
+    </label><br />
+    <input type="submit" value="Save" />
+  </form>
+{% endblock %}

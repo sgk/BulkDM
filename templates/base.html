@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>BulkDM</title>
+  </head>
+  <body>
+    <div id="auth">
+      {% if session['username'] %}
+	Welcome, {{ session['username'] }}.
+	<a href="{{ url_for('logout') }}">Click here to logout.</a>
+      {% else %}
+	Welcome. <a href="{{ url_for('login') }}">Click here to login.</a>
+      {% endif %}
+    </div>
+    <h1><a href="{{ url_for('dests') }}">BulkDM</a></h1>
+    <h2>{% block title %}{% endblock %}</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+	<ul>
+	  {% for message in messages %}
+	    <li>{{ message }}</li>
+	  {% endfor %}
+	</ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}
+      The page content.
+    {% endblock %}
+  </body>
+</html>
